@@ -1,6 +1,14 @@
 We estimate background seismicity rate using Nearest Neighbor approach and compare the results with Reasenberg and Gamma Distribution Fit. We also create ETAS based stochatic catalogs to compare the rates against true values. 
 
-We follow nearest neighbor approach by: Zaliapin, I., & Ben-Zion, Y. (2013). Earthquake clusters in southern california ii: Classification and relation to physical properties of the crust. Journal of Geophysical Research: Solid Earth, 118 , 2865-2877. doi: 10.1002/jgrb.50178. The nearest neighbor codes are available at: https://github.com/tgoebel/clustering-analysis. We modified the codes as per our dataset.
+Here we show the background rate estimatation procedure using Hawaii ANSS ComCat catalog by U.S. Geological Survey, Earthquake Hazard Program. (2025). Advanced national seismic system (anss) comprehensive catalog of earthquake events and products. Retrieved from https://earthquake.usgs.gov/earthquakes/search/ (last accessed on January 2025) doi: 10.5066/F7MS3QZH 
+
+Dependencies:
+
+Python 3.7 Numpy, matplotlib, matplotlib-Basemap, scipy, scipy, datetime, calendar
+
+We follow nearest neighbor approach by: 
+Zaliapin, I., and Ben-Zion, Y., 2013, Earthquake clusters in southern California I: Identification and stability: Journal of Geophysical Research: Solid Earth, v. 118, no. 6, p. 2847–2864, doi: 10.1002/jgrb.50179.
+Goebel, T.H.W., Rosson, Z., Brodsky, E.E., and Walter, J.I., 2019, Aftershock deficiency of induced earthquake sequences during rapid mitigation efforts in Oklahoma: Earth and Planetary Science Letters, v. 522, p. 135–143, doi: 10.1016/j.epsl.2019.06.036. The nearest neighbor codes are available at: https://github.com/tgoebel/clustering-analysis. We modified the codes as per our dataset.
 
 We follow the ETAS model developed by Mizrahi, L., Schmid, N., & Han, M. (2023). lmizrahi/etas: Etas with fit visualization (3.2). Zenodo. Retrieved from https://doi.org/10.5281/zenodo.7584575 doi:10.5281/zenodo.7584575. This code requires installation of etas as described in https://github.com/lmizrahi/etas. 
 
