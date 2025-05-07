@@ -15,11 +15,12 @@ We follow the ETAS model developed by Mizrahi, L., Schmid, N., & Han, M. (2023).
 We fit Gamma distribution following: Hainzl, S., Scherbaum, F., & Beauval, C. (2006). Estimating background activity based on interevent-time distribution. Bulletin of the Seismological Society of America, 96 ,313-320. doi: 10.1785/0120050053
 
 Folders:
-1. code contains the code to run nearest neighbor analysis and then estimate the backgroud rate, finally compare rates with Gamma fit and reasenberg (if available).
-2. ETAS contains the codes to create synthetic catalogs.
-3. data contains the input catalogs files.
-4. data_processed contains the processed files from NND and the declustered catalogs.
-5. plots contains the figures. 
+1. 'code' contains the code to run nearest neighbor analysis and then estimate the backgroud rate, finally compare rates with Gamma fit and reasenberg (if available).
+2. 'ETAS' contains the codes to create synthetic catalogs.
+3. 'data' contains the input catalogs files.
+4. 'data_processed' contains the processed files from NND and the declustered catalogs.
+5. 'plots' contains the figures. 
+6. 'r85' contains declsutered catalog following Reasenberg, P. (1985). Second-order moment of central california seismicity, 1969-1982.doi 10.1029/JB090iB07p054796879
 
 Basic procedure:
 
