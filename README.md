@@ -18,7 +18,9 @@ Basic procedure:
 1. We downloaded our ANSS catalog using obspy. Our catalog is organized using this format:
 ['YR','MO','DY','HR','MN', 'SC', 'N', 'Lat','Lon','Depth','Mag']
 
-2. EqCat.py provides the function to load earthqauke catalog based on different formats e.g., Relocated, ANSS, USGS Hazard Model catalog etc. 
+2. EqCat.py provides the function to create earthqauke catalog for NND based on different formats e.g., Relocated, ANSS, USGS Hazard Model catalog etc. 
+
+3. Perform fractal dimension analsis using 1_fractal_analysis.py NN analysis using 2_NND_analysis.py and backgroudn rate estimation using 3_estimate_background_rate.py
 
 3. ETAS folder contains the code to create synthetic catalogs. We have automated the full process to create synthetic catalogs based on three different rate types. define_rates.py provide the definition of rates we used in the study. 
 
