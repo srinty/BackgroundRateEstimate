@@ -1,0 +1,5 @@
+{
+  "forecast_duration": 7300,
+  "fn_store_simulation": "../output_data/simulated_CA_catalog_continuation1.csv",
+  "fn_inversion_output": "../output_data/parameters_0.json"
+}

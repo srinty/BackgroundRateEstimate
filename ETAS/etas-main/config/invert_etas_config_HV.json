@@ -1,0 +1,26 @@
+{
+  "fn_catalog": "../input_data/HV_ANSS_full_catalog.csv",
+  "data_path": "../output_data/",
+  "auxiliary_start": "1959-01-01 00:00:00",
+  "timewindow_start": "1969-01-01 00:00:00",
+  "timewindow_end": "2017-12-31 00:00:00",
+  "testwindow_end": "2024-12-31 00:00:00",
+  "theta_0": {
+    "log10_mu": -5.28,
+    "log10_k0": -2.52,
+    "a": 1.70,
+    "log10_c": -2.97,
+    "omega":  0.05,
+    "log10_tau": 3.30,
+    "log10_d":  -0.250,
+    "gamma":  1.2,
+    "rho": 0.4
+  },
+  "mc": 2.5,
+  "delta_m": 0.1,
+  "coppersmith_multiplier": 100,
+  "shape_coords": "../input_data/HV_shape.npy",
+  "id": "0"
+}
+
+

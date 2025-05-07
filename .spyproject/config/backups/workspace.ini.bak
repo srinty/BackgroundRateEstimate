@@ -1,0 +1,12 @@
+[workspace]
+restore_data_on_startup = True
+save_data_on_exit = True
+save_history = True
+save_non_project_files = False
+project_type = 'empty-project-type'
+recent_files = ['code/3_estimate_background_rate.py', 'ETAS/code/1b_create_intermediate_rate_catalog.py', 'ETAS/code/1c_create_short_term_rate_catalog.py', 'ETAS/code/1a_create_stable_rate_catalog.py', 'code/1_fractal_analysis.py', 'code/2_NND_anaysis.py']
+
+[main]
+version = 0.2.0
+recent_files = []
+
