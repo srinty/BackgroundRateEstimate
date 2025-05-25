@@ -40,7 +40,7 @@ dPar = {
 
 
 a_X, a_Y, a_Z = np.loadtxt( f"{p2parent}/data/{file}",delimiter=',',skiprows=1,
-                          usecols=(9,8,10) , max_rows=1000,
+                          usecols=(9,8,10) , max_rows=2000, #change rows, I did for faster computation
                             dtype = float).T
 
 
@@ -73,11 +73,12 @@ d_C_int = fractalDim.C_r_Int( a_X, a_Y, a_Z,
 N_max = ( N_AE*(N_AE-1))*.5
 # determine max. cut-off
 if 'xmax' in dPar.keys() and dPar['xmax'] is not None:
-    dRmax = { 'rmax' : dPar['xmax']}
+        dRmin = {'rmin': 1.5}
+        dRmax = { 'rmax' : 10}
 else:
-    dRmax = { 'rmax' : d_C_int['aL_ave'][d_C_int['aN_sum'] > N_max][0]}
-print( 'Nmax:', N_max, dRmax)
-sel_pl   = d_C_int['aL_ave'] < dRmax['rmax']
+        dRmax = { 'rmax' : d_C_int['aL_ave'][d_C_int['aN_sum'] > N_max][0]}
+print( 'Nmax:', N_max, dRmin, dRmax)
+sel_pl = (d_C_int['aL_ave']>dRmin['rmin']) & (d_C_int['aL_ave'] < dRmax['rmax'])
 #=================================3=========================================================
 #                        fractal dimension
 #===========================================================================================
@@ -88,14 +89,15 @@ print( 'D2' , slope, 'rmax', dRmax['rmax'])
 aC_hat = interc*d_C_int['aL_ave']**slope
 
 color  = 'k'
-plt.figure(2)
+plt.figure()
 ax = plt.subplot( 111)
 ax.loglog( d_C_int['aL_ave'], d_C_int['aCorr'], 'o',
             ms = 5, mec = color, mfc = 'w')
 ax.loglog( d_C_int['aL_ave'], aC_hat, '--', color = color,
           label = f'D = {slope:.2f}')
 # mark upper bound
-ax.axvline( dRmax['rmax'])
+ax.axvline( dRmin['rmin'], color = 'black', ls='--')
+ax.axvline( dRmax['rmax'], color = 'black', ls='--')
 #------labels and legends
 ax.legend( loc = 'upper left')
 ax.set_xlabel( 'Distance (km)')
@@ -104,6 +106,11 @@ ax.grid(True)
 #plt.savefig( f"{p2parent}/plots/CorrInt3D_test_{file.split('.')[0]}_xmin{dPar['xmin']}_xmax{dPar['xmax']}.{dPar['plotFormat']}", dpi = 1000,
 #            transparent = True)
 plt.show()
+
+
+# import pickle
+# with open('d_CI_HV.pkl', 'wb') as f:
+#     pickle.dump(d_C_int, f)
 
 
 
