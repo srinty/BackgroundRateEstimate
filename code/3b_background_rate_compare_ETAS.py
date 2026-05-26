@@ -72,7 +72,7 @@ os.chdir(f"{main_dir}/{dir_in}")
 
 r85 = False
 
-fig = plt.figure(figsize=(14,8))
+fig = plt.figure(figsize=(10,6))
 gs = fig.add_gridspec(2, 2)
 
 ax1 = fig.add_subplot(gs[0, :])
@@ -156,6 +156,7 @@ mu_inter_event = tau_mean/beta_scipy   # 1/beta is the background rate
 gamma_fraction =  mu_inter_event #* 100 # 1/beta is the background rate 
 gamma_pdf_fit = gamma.pdf(x_values, shape, loc, scale)
 gamma_bg_rate = gamma_fraction*seismicity_rate_per_year
+gamma_cumulative = np.cumsum(gamma_bg_rate.values)
 #gamma_rate = np.mean(gamma_bg_rate)
 #gamma_rate = gamma_fraction*total_eq_rate_year
 
@@ -189,16 +190,17 @@ markers2, stems2, baseline2 = ax3.stem(big_events['datetime'], big_events['magni
   )
 plt.setp(baseline2, visible=False)
 plt.setp(stems2, linewidth=0.8, alpha=0.8, color = 'black')
-plt.setp(markers2, markersize=7,markerfacecolor='white', markeredgecolor = 'black', alpha=0.8)
+plt.setp(markers2, markersize=12,markerfacecolor='white', markeredgecolor = 'black', alpha=0.8)
 
 
-ax1.plot(df['datetime'], df['index'],'.',linewidth=0.1,alpha=0.4, color='black', #colors[i],
+ax1.plot(df['datetime'], df['index'],'-',linewidth=4,alpha=0.9, color='black', #colors[i],
             label="Full Catalog")
-ax1.plot(df_bg['datetime'], df_bg['index'],'.',linewidth=0.1,alpha=0.5, color='orange', #colors[i],
+ax1.plot(df_bg['datetime'], df_bg['index'],'-',linewidth=4,alpha=0.9, color='orange', #colors[i],
             label="True Background Events")
    
 hist, bin_edges = np.histogram(inter_event_times, bins=x_values, density=True)
 bin_centers = (bin_edges[:-1] + bin_edges[1:]) / 2
+
 #==== comment out to run all files
 
 
@@ -257,9 +259,9 @@ if r85 == True:
     #bg_eq_rate_year_r85 = np.mean(r85_bg_rate)
 
 
-    ax1.plot(df_r85['datetime'], df_r85['index'], '.',linewidth=0.1,alpha=0.5,color='r',
-              #label = f'μ_R85: {bg_eq_rate_year_r85:.0f} ev/yr'
-              label = 'R85 Background Events',)
+    ax1.plot(df_r85['datetime'], df_r85['index'], '-',linewidth=4,alpha=0.9,color='r',
+                  #label = f'μ_R85: {bg_eq_rate_year_r85:.0f} ev/yr'
+                  label = 'R85',)
 
     r85_seismicity_rate_per_year = df_r85.groupby('year').size()
     r85_frac = r85_seismicity_rate_per_year/seismicity_rate_per_year
@@ -267,10 +269,22 @@ if r85 == True:
 
 
 
-ax1.plot(df_NN['datetime'], df_NN['index'], '.',linewidth=0.1,alpha=0.5, color='b',
+ax1.plot(df_NN['datetime'], df_NN['index'], '-',linewidth=4,alpha=0.9, color='b',
               #label = f'μ_NN: {bg_eq_rate_year_NN:.0f} ev/yr'
-              label = 'NN Background Events' , 
+              label = 'NN' , 
               )
+
+
+
+year_dates = pd.to_datetime(seismicity_rate_per_year.index.astype(int), format='%Y') + pd.offsets.YearEnd(0)
+first_year_start = pd.to_datetime(years[0], format='%Y')
+# Prepend the start date to your dates and a 0 to your cumulative values
+gamma_dates = np.insert(year_dates.values, 0, first_year_start)
+gamma_values = np.insert(gamma_cumulative, 0, 0)
+ax1.plot(gamma_dates, gamma_values, '-', linewidth=4, alpha=0.9, color='green',
+         label='Gamma')
+
+
 
 nn_seismicity_rate_per_year = df_NN.groupby('year').size()
 nn_frac = nn_seismicity_rate_per_year/seismicity_rate_per_year
@@ -312,13 +326,15 @@ median_nn_rate = rate_dict['NN'].median(axis=1)
    
 
 
-ax4.plot(df2['year']+ pd.DateOffset(months=6), df2['given_rate'].values, marker='x', linestyle='-',lw=3, color='black',markersize=4,markerfacecolor='none',
-              label="Given Rate"  )    
+ax4.plot(df2['year']+ pd.DateOffset(months=6), df2['given_rate'].values, marker='x', linestyle='-',lw= 6 , color='k',markersize=4,markerfacecolor='none',
+             )  
+ax4.plot(df2['year']+ pd.DateOffset(months=6), df2['given_rate'].values, marker='x', linestyle='-',lw=3.5, color='orange',markersize=4,markerfacecolor='none',
+              label="True Background Rate"  ) 
 
-ax4.plot(df2['year']+ pd.DateOffset(months=6), median_nn_rate.values, marker='s', linestyle='--',lw=2, color='b',markersize=4,markerfacecolor='none',
-          label="NN Rate"  )
-ax4.plot(df2['year']+ pd.DateOffset(months=6), median_gamma_rate.values, marker='d', linestyle='--',lw=2, color='green',markersize=4,markerfacecolor='none',
-          label="Gamma Rate"  )
+ax4.plot(df2['year']+ pd.DateOffset(months=6), median_nn_rate.values, marker='s', linestyle='--',lw=2.5, color='b',markersize=4,markerfacecolor='none',
+          label="NN"  )
+ax4.plot(df2['year']+ pd.DateOffset(months=6), median_gamma_rate.values, marker='d', linestyle='--',lw=2.5, color='green',markersize=4,markerfacecolor='none',
+          label="Gamma"  )
 
 if r85 == True: 
     df2['R85'] =  r85_bg_rate.values
@@ -326,8 +342,8 @@ if r85 == True:
     error_dict["R85"][col_name] = np.array(((df2.given_rate -   r85_bg_rate.values))/df2.given_rate)
     median_r85_rate = rate_dict['R85'].median(axis=1)
 
-    ax4.plot(df2['year']+ pd.DateOffset(months=6), median_r85_rate.values, marker='o', linestyle='--',lw=2, color='r',markersize = 4,markerfacecolor='none',
-          label="R85 Rate"  )     
+    ax4.plot(df2['year']+ pd.DateOffset(months=6), median_r85_rate.values, marker='o', linestyle='--',lw=2.5, color='r',markersize = 4,markerfacecolor='none',
+              label="R85"  )    
 
 
     
@@ -356,7 +372,7 @@ ax3.set_xlabel('Time', fontsize = 16, font = "Times New Roman")
 #ax4.legend(loc='upper left', fontsize = 7)
 #ax4.grid()
 ax4.set_ylabel('Background Rate [ev/yr]')
-
+ax4.set_yscale('log')
 # Remove duplicate legends
 axs=[ax1,ax3,ax4]
 for ax in axs:
@@ -383,5 +399,5 @@ for ax in axs:
 
 plt.subplots_adjust(left=0.1, bottom=0.1, right=0.9, top=0.95, wspace=0.25, hspace=0.3)
 plt.show()
-plt.savefig( '%s/fig_%s.svg'%(plot_dir, outfile),dpi = 500, transparent = True)
+plt.savefig( '%s/fig_%s.png'%(plot_dir, outfile),dpi = 300, transparent = True)
 

@@ -102,7 +102,7 @@ ax.legend(unique_labels.values(), unique_labels.keys(), loc='upper right')
 out_dir = f"{main_dir}/data_processed"
 os.chdir(out_dir)
 outfile = file_in.replace( '.csv', '_freq_mag.jpg')
-plt.savefig(outfile, format = 'jpg', dpi = 1000)
+plt.savefig(outfile, format = 'jpg', dpi = 300)
 
 par = oFMD.par
 P = pd.DataFrame.from_dict(par,orient='index')

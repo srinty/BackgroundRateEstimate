@@ -33,7 +33,7 @@ for i in range(1,2):
     D = 1.3
  
     # List of Python scripts that require input filenames
-    scripts_phase1 = ['2a_create_mat_eqCat_file.py','2b_mag_dist.py']
+    scripts_phase1 = ['2a_create_mat_eqCat_file.py',]#'2b_mag_dist.py']
     scripts_phase2 = ['2c_eta_0.py','2d_NND.py', '2e_dist_tau.py', '2f_plot_lat_t.py',
                '2g_createClust.py','2h_productivity.py',] 
     

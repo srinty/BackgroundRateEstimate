@@ -159,7 +159,7 @@ for i in range( dPar['a_Mc'].shape[0]):
     #                           save results
     #================================================================================
     #print( 'plot saved in: ','plots/T_R_%s_Mc_%.1f.png'%( file_in.split('.')[0], f_Mc))
-    fig1.savefig( 'plots/T_R_%s_Mc_%.1f_b_%.1f_d_%.1f.svg'%( file_in.split('.')[0], f_Mc, dPar['b'],D), dpi = 500)
+    fig1.savefig( 'plots/T_R_%s_Mc_%.1f_b_%.1f_d_%.1f.png'%( file_in.split('.')[0], f_Mc, dPar['b'],D), dpi = 500)
     #plt.show()
      
     #plt.clf()
@@ -230,9 +230,9 @@ for i in range( dPar['a_Mc'].shape[0]):
     
     
     plt.subplots_adjust(left=0.05,bottom=0.12,right=0.95,top=0.9)
-    plotFile = 'plots/%s_aR_aT_hist_Mc_%.1f_b_%.1f_d_%.1f.svg'%( file_in.split('.')[0], f_Mc, dPar['b'],D)
+    plotFile = 'plots/%s_aR_aT_hist_Mc_%.1f_b_%.1f_d_%.1f.png'%( file_in.split('.')[0], f_Mc, dPar['b'],D)
     #print( 'save plot', plotFile)
-    fig2.savefig( plotFile,dpi = 1000,transparent=True)
+    fig2.savefig( plotFile,dpi = 300,transparent=True)
     #plt.show()
 
 

@@ -117,7 +117,7 @@ for f_Mc in dPar['a_Mc']:
     #================================================================================
 
     plt.figure(1)
-    plt.savefig( '%s/%s_spanningTree_Mc_%.1f.svg'%(plot_dir, file_in.split('.')[0], f_Mc),dpi = 1000,transparent=True)
+    plt.savefig( '%s/%s_spanningTree_Mc_%.1f.png'%(plot_dir, file_in.split('.')[0], f_Mc),dpi = 300,transparent=True)
     ## save main shock catalog
     #plt.show()
     #plt.clf()

@@ -147,9 +147,9 @@ for f_Mc in dPar['aMc']:
     ax.set_xlim( dPar['xmin'], dPar['xmax'])
     
 
-    plotFile = 'plots/%s_NND_hist_Mc_%.1f_b_%.1f_d_%.1f.svg'%( file_in.split('.')[0], f_Mc, dPar['b'],D)
+    plotFile = 'plots/%s_NND_hist_Mc_%.1f_b_%.1f_d_%.1f.png'%( file_in.split('.')[0], f_Mc, dPar['b'],D)
     #print( 'save plot', plotFile)
-    plt.savefig( plotFile,dpi = 1000,transparent=True)
+    plt.savefig( plotFile,dpi = 300,transparent=True)
     #plt.show()
     
 
