@@ -4,7 +4,7 @@
 [![Zenodo](https://zenodo.org/badge/DOI/10.5281/zenodo.15508803.svg)](https://doi.org/10.5281/zenodo.15508803)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-This repository provides tools to estimate background seismicity rates using the **Nearest-Neighbor (NN) distance approach** and benchmarks the results against **Reasenberg (1985)** declustering and an interevent-time **Gamma Distribution Fit** (Hainzl et al., 2006). To evaluate method accuracy against known ground truth, synthetic seismicity catalogs are generated using the **Epidemic-Type Aftershock Sequence (ETAS)** model.
+This repository provides tools to estimate background seismicity rates and benchmarks the results using the **Nearest-Neighbor (NN) distance approach**  , interevent-time **Gamma Distribution Fit** (Hainzl et al., 2006) and  **Reasenberg (1985)** declustering. To evaluate method accuracy against known ground truth, synthetic seismicity catalogs are generated using the **Epidemic-Type Aftershock Sequence (ETAS)** model.
 
 The complete workflow is demonstrated using the **Hawaii ANSS ComCat catalog** ([USGS Earthquake Hazards Program, 2025](https://earthquake.usgs.gov/earthquakes/search/)).
 

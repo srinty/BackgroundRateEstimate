@@ -1,0 +1,17 @@
+# macOS metadata
+.DS_Store
+._*
+
+# Python bytecode & cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Spyder project settings and backups
+.spyproject/
+.spyderproject/
+
+# Jupyter / IDE files
+.ipynb_checkpoints/
+.vscode/
